@@ -6,11 +6,15 @@ const PasswordGeneratorContainer = () => {
   const [configValues, setConfigValues] = useState({
     uppercase: true,
     lowercase: true,
-    numbers: false,
+    numbers: true,
     symbols: false,
   });
 
   const [passwordLength, setPasswordLength] = useState(15);
+  const [password, setPassword] = useState(
+    useGenPassword(configValues, passwordLength)
+  );
+  // const password = useRef(useGenPassword(configValues, passwordLength));
 
   const handleConfigChange = (e) => {
     setConfigValues((prev) => {
@@ -21,25 +25,32 @@ const PasswordGeneratorContainer = () => {
     });
   };
 
-  const password = useRef(useGenPassword(configValues, passwordLength));
   const handlePasswordLengthChange = (e) => {
     setPasswordLength(e.target.value);
   };
 
+  useEffect(() => {
+    setPassword(useGenPassword(configValues, passwordLength));
+    // password.current = useGenPassword(configValues, passwordLength);
+  }, [configValues, passwordLength]);
+
   return (
-    <div className=" w-screen bg-[#Caedf7]">
-      <div className="flex flex-col justify-center  gap-5 h-screen items-center">
-        <h1 className=" text-center font-extrabold text-4xl">
-          Password Generator
-        </h1>
-        <PasswordInput password={password} />
-        <PasswordConfig
-          values={configValues}
-          length={passwordLength}
-          setLength={handlePasswordLengthChange}
-          setValues={handleConfigChange}
-        />
-      </div>
+    <div className="flex flex-col items-center p-2 min-[478px]:justify-center gap-5  max-[480px]:h-full  h-screen bg-[#Caedf7]">
+      <h1 className=" text-center font-extrabold  max-[478px]:text-4xl  text-5xl ">
+        Password Generator
+      </h1>
+      <PasswordInput
+        password={password}
+        values={configValues}
+        length={passwordLength}
+        setPass={setPassword}
+      />
+      <PasswordConfig
+        values={configValues}
+        length={passwordLength}
+        setLength={handlePasswordLengthChange}
+        setValues={handleConfigChange}
+      />
     </div>
   );
 };

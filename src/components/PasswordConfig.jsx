@@ -12,7 +12,7 @@ const PasswordConfig = ({ values, setValues, length, setLength }) => {
   };
 
   return (
-    <div className=" rounded-lg  gap-7 flex-col items-center justify-center flex p-10 w-[67%]  bg-white">
+    <div className=" rounded-lg  gap-7 flex-col items-center justify-center flex p-8 w-[67%]  bg-white">
       <div className="flex flex-wrap  gap-5 max-[800px]:flex-col ">
         <div>
           <label htmlFor="length" className=" text-2xl font-extrabold">
@@ -38,6 +38,7 @@ const PasswordConfig = ({ values, setValues, length, setLength }) => {
             id="length"
           />
           <button
+            title="Copy to clipboard"
             id="plus"
             onClick={handleLengthChange}
             className="rounded-full  border-2 border-blue-500 p-1">
