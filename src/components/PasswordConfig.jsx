@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useRef } from "react";
 import MemoizedFontAwesomeIcon from "./MemoizedIcon";
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 const PasswordConfig = ({ values, setValues, length, setLength }) => {
   const handleLengthChange = (e) => {
-    console.log(e);
-    if (e.target.id === "plus") {
-      setLength((prev) => prev + 1);
-    } else {
+    e.preventDefault();
+    console.log(e.target.id);
+    if (e.target.id === "minus") {
+      if (length === 4) return;
       setLength((prev) => prev - 1);
+    } else if (e.target.id === "plus") {
+      if (length === 50) return;
+      setLength((prev) => prev + 1);
     }
   };
 
   return (
-    <div className=" rounded-lg  gap-7 flex-col items-center justify-center flex p-8 w-[67%]  bg-white">
+    <div className=" rounded-lg  gap-7 flex-col items-center justify-center flex p-8 w-[67.5%]  bg-white">
       <div className="flex flex-wrap  gap-5 max-[800px]:flex-col ">
         <div>
           <label htmlFor="length" className=" text-2xl font-extrabold">
@@ -24,26 +28,20 @@ const PasswordConfig = ({ values, setValues, length, setLength }) => {
           <button
             id="minus"
             onClick={handleLengthChange}
-            className="rounded-full  border-2 border-blue-500 p-1">
-            {" "}
-            <MemoizedFontAwesomeIcon icon={faMinus} size={"lg"} />
-          </button>
+            className="rounded-full  border-2 border-blue-500 p-1"></button>
           <input
-            onChange={setLength}
+            onChange={(e) => setLength(e.target.value)}
             type="range"
-            min="6"
+            min="4"
             step={"1"}
             max="50"
             value={length}
             id="length"
           />
           <button
-            title="Copy to clipboard"
             id="plus"
             onClick={handleLengthChange}
-            className="rounded-full  border-2 border-blue-500 p-1">
-            <MemoizedFontAwesomeIcon icon={faPlus} size={"lg"} />
-          </button>
+            className="rounded-full  border-2 border-blue-500 p-1"></button>
         </div>
       </div>
       <div className="flex font-extrabold  items-center flex-wrap text-xl gap-5 ">
@@ -54,6 +52,11 @@ const PasswordConfig = ({ values, setValues, length, setLength }) => {
             defaultChecked={values.uppercase}
             onChange={setValues}
             id="uppercase"
+            disabled={
+              !values.lowercase && !values.numbers && !values.symbols
+                ? true
+                : false
+            }
           />
           <label htmlFor="uppercase">ABC</label>
         </div>
@@ -64,6 +67,11 @@ const PasswordConfig = ({ values, setValues, length, setLength }) => {
             defaultChecked={values.lowercase}
             onChange={setValues}
             id="lowercase"
+            disabled={
+              !values.uppercase && !values.numbers && !values.symbols
+                ? true
+                : false
+            }
           />
           <label htmlFor="lowercase">abc</label>
         </div>
@@ -74,6 +82,11 @@ const PasswordConfig = ({ values, setValues, length, setLength }) => {
             defaultChecked={values.numbers}
             onChange={setValues}
             id="numbers"
+            disabled={
+              !values.uppercase && !values.lowercase && !values.symbols
+                ? true
+                : false
+            }
           />
           <label htmlFor="numbers">123 </label>
         </div>
@@ -84,6 +97,11 @@ const PasswordConfig = ({ values, setValues, length, setLength }) => {
             defaultChecked={values.symbols}
             onChange={setValues}
             id="symbols"
+            disabled={
+              !values.uppercase && !values.lowercase && !values.numbers
+                ? true
+                : false
+            }
           />
           <label htmlFor="symbols">#!&</label>
         </div>

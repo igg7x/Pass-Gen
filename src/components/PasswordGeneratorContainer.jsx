@@ -25,19 +25,15 @@ const PasswordGeneratorContainer = () => {
     });
   };
 
-  const handlePasswordLengthChange = (e) => {
-    setPasswordLength(e.target.value);
-  };
-
   useEffect(() => {
     setPassword(useGenPassword(configValues, passwordLength));
     // password.current = useGenPassword(configValues, passwordLength);
   }, [configValues, passwordLength]);
 
   return (
-    <div className="flex flex-col items-center p-2 min-[478px]:justify-center gap-5  max-[480px]:h-full  h-screen bg-[#Caedf7]">
-      <h1 className=" text-center font-extrabold  max-[478px]:text-4xl  text-5xl ">
-        Password Generator
+    <div className="flex flex-col items-center p-2 min-[500px]:justify-center gap-5  max-[375px]:h-full  h-screen bg-gradient-to-t from-sky-500 to-cyan-100">
+      <h1 className=" text-center  font-extrabold   text-5xl ">
+        P₳ssword Generator
       </h1>
       <PasswordInput
         password={password}
@@ -48,7 +44,7 @@ const PasswordGeneratorContainer = () => {
       <PasswordConfig
         values={configValues}
         length={passwordLength}
-        setLength={handlePasswordLengthChange}
+        setLength={setPasswordLength}
         setValues={handleConfigChange}
       />
     </div>

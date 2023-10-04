@@ -14,9 +14,10 @@ const PasswordInput = ({ password, setPass, values, length }) => {
   };
 
   return (
-    <div className="flex max-[400px]:flex-col justify-between items-center gap-5  w-[67%]  p-8 rounded-lg bg-white">
+    <div className="flex max-[650px]:flex-col justify-between items-center gap-5  w-[67.5%]  p-8 rounded-lg bg-white">
       <div className="flex flex-col w-full sm:w-auto">
         <input
+          onChange={(e) => setPass(e.target.value)}
           value={password}
           type="text"
           className="outline-none  min-[500px]:text-3xl text-2xl font-bold   w-full "
@@ -24,7 +25,29 @@ const PasswordInput = ({ password, setPass, values, length }) => {
         />
         <hr />
       </div>
-      <div className="flex gap-4  font-normal    ">
+      <div
+        style={{
+          backgroundColor:
+            length < 10
+              ? "red"
+              : length < 20
+              ? "yellowgreen"
+              : length < 30
+              ? "green"
+              : "blue",
+        }}
+        className="bg-blue-600 rounded-lg py-4 px-5">
+        <h3 className="font-extrabold text-white text-2xl ">
+          {length < 10
+            ? "Weak"
+            : length < 20
+            ? "Medium"
+            : length < 30
+            ? "Strong"
+            : "Very Strong"}
+        </h3>
+      </div>
+      <div className="flex gap-4  font-normal   ">
         <button onClick={handleCopyToClipBoard}>
           <MemoizedFontAwesomeIcon icon={faCopy} size={"2xl"} />
         </button>
