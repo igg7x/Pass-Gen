@@ -1,11 +1,15 @@
 import React from "react";
 import MemoizedFontAwesomeIcon from "./MemoizedIcon";
-import { faRotateRight, faCopy } from "@fortawesome/free-solid-svg-icons";
-import { ToastContainer, toast } from "react-toastify";
+import {
+  faRotateRight,
+  faCopy,
+  faSpellCheck,
+} from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useGenPassword from "../hooks/useGenPassword";
 
-const PasswordInput = ({ password, setPass, values, length }) => {
+const PasswordInput = ({ password, setPass, values, length, openModal }) => {
   const handleCopyToClipBoard = () => {
     toast.success("Copy to Clipboard", {
       position: "bottom-center",
@@ -64,6 +68,9 @@ const PasswordInput = ({ password, setPass, values, length }) => {
         </button>
         <button onClick={handleResetPassword}>
           <MemoizedFontAwesomeIcon icon={faRotateRight} size={"2xl"} />
+        </button>
+        <button onClick={openModal}>
+          <MemoizedFontAwesomeIcon icon={faSpellCheck} size={"2xl"} />
         </button>
       </div>
     </div>
