@@ -1,16 +1,25 @@
 import React from "react";
 
 const PasswordConfig = ({ values, setValues, length, setLength }) => {
-  const handleLengthChange = (e) => {
-    e.preventDefault();
-    console.log(e.target.id);
-    if (e.target.id === "minus") {
-      if (length === 4) return;
-      setLength((prev) => prev - 1);
-    } else if (e.target.id === "plus") {
-      if (length === 50) return;
-      setLength((prev) => prev + 1);
-    }
+  // const handleLengthChange = (e) => {
+  //   e.preventDefault();
+  //   if (e.target.id === "minus") {
+  //     if (length === 4) return;
+  //     setLength((prev) => prev - 1);
+  //   } else if (e.target.id === "plus") {
+  //     if (length === 50) return;
+  //     setLength((prev) => prev + 1);
+  //   }
+  // };
+
+  const handleDecrement = () => {
+    if (length === 4) return;
+    setLength((prev) => prev - 1);
+  };
+
+  const handleIncrement = () => {
+    if (length === 50) return;
+    setLength((prev) => prev + 1);
   };
 
   return (
@@ -23,7 +32,7 @@ const PasswordConfig = ({ values, setValues, length, setLength }) => {
       <div className="flex w-[50%]  items-center justify-center gap-5 ">
         <button
           id="minus"
-          onClick={handleLengthChange}
+          onClick={handleDecrement}
           className="font-extralight   text-5xl ">
           -
         </button>
@@ -39,7 +48,7 @@ const PasswordConfig = ({ values, setValues, length, setLength }) => {
         />
         <button
           id="plus"
-          onClick={handleLengthChange}
+          onClick={handleIncrement}
           className="font-extralight   text-5xl ">
           +
         </button>

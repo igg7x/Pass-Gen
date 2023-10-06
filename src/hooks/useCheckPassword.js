@@ -10,7 +10,7 @@ export const useCheckPassword = (password) => {
   }
   if (password.match(/[A-Z]+/)) {
     score += 1;
-    // chars += "U";
+    // chars += "U";npm
   }
   if (password.match(/[0-9]+/)) {
     score += 1;
