@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PasswordInput from "./PasswordInput";
 import PasswordConfig from "./PasswordConfig";
 import useGenPassword from "../hooks/useGenPassword";
+import { ToastContainer } from "react-toastify";
 const PasswordGeneratorContainer = () => {
   const [configValues, setConfigValues] = useState({
     uppercase: true,
@@ -31,16 +32,21 @@ const PasswordGeneratorContainer = () => {
   }, [configValues, passwordLength]);
 
   return (
-    <div className="flex flex-col items-center p-2 min-[500px]:justify-center gap-5  max-[375px]:h-full  h-screen bg-gradient-to-t from-sky-500 to-cyan-100">
-      <h1 className=" text-center  font-extrabold   text-5xl ">
-        P₳ssword Generator
+    <div className="flex flex-col items-center p-1 justify-center gap-5   h-screen bg-gradient-to-t from-sky-500 to-cyan-100">
+      <h1 className=" text-center max-[450px]:text-4xl font-extrabold  max-[375px]:text-2xl text-5xl ">
+        Password Generator
       </h1>
+      <p className="font-bold text-xl text-cyan-700">
+        Generate strong <strong className="text-slate-800">Passwords</strong>{" "}
+        quickly
+      </p>
+      <ToastContainer />
       <PasswordInput
         password={password}
         values={configValues}
         length={passwordLength}
         setPass={setPassword}
-      />
+      />{" "}
       <PasswordConfig
         values={configValues}
         length={passwordLength}
