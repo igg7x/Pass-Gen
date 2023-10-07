@@ -13,7 +13,6 @@ const PasswordConfig = ({ values, setValues, length, setLength }) => {
   // };
 
   const handleDecrement = () => {
-    console.log(length);
     if (parseInt(length) !== 4) {
       setLength((prev) => parseInt(prev) - 1);
     }
