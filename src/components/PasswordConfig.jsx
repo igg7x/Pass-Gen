@@ -13,13 +13,17 @@ const PasswordConfig = ({ values, setValues, length, setLength }) => {
   // };
 
   const handleDecrement = () => {
-    if (length === 4) return;
-    setLength((prev) => prev - 1);
+    console.log(length);
+    if (parseInt(length) !== 4) {
+      setLength((prev) => parseInt(prev) - 1);
+    }
   };
 
   const handleIncrement = () => {
-    if (length === 50) return;
-    setLength((prev) => prev + 1);
+    console.log(length);
+    if (parseInt(length) !== 50) {
+      setLength((prev) => parseInt(prev) + 1);
+    }
   };
 
   return (
