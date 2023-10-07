@@ -1,11 +1,8 @@
 import "./App.css";
 import PasswordGeneratorContainer from "./components/PasswordGeneratorContainer";
+
 function App() {
-  return (
-    <>
-      <PasswordGeneratorContainer />
-    </>
-  );
+  return <PasswordGeneratorContainer />;
 }
 
 export default App;

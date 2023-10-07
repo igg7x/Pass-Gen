@@ -21,7 +21,7 @@ const CheckPasswordModal = ({ show, onCloseModal }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full  flex items-center justify-center backdrop-blur-sm">
+    <div className="fixed top-0 left-0 w-full h-full z-10 flex items-center justify-center backdrop-blur-sm">
       <section className="w-[50%]  max-[800px]:w-[75%]   max-[300px]:gap-2  h-auto sm:w-[90%] md:w-[80%] absolute lg:w-[70%] xl:w-[60%]  bg-cyan-800 rounded-md p-4 flex flex-col  items-center gap-5">
         <button
           className="absolute top-0 text-white right-0 p-2"
